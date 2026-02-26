@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DD-Solutions Portfolio | Empowering Students & Professionals</title>
+  <meta name="description" content="DD-Solutions by Singothu Dinesh – Empowering students from 10th to B.Tech and working professionals with tools, guidance, and resources for career growth." />
+  <meta name="keywords" content="DD-Solutions, Singothu Dinesh, student portfolio, career guidance, resume builder, B.Tech students, working professionals" />
+  <meta property="og:title" content="DD-Solutions Portfolio" />
+  <meta property="og:description" content="Empowering students & professionals to reach their peak." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Three.js + GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+/* ============================================================
+   CSS VARIABLES & RESET
+   ============================================================ */
+:root {
+  --bg-primary: #070712;
+  --bg-secondary: #0d0d1e;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-glass: rgba(15,15,35,0.7);
+  --border-glass: rgba(255,255,255,0.08);
+  --accent-1: #6c63ff;
+  --accent-2: #a855f7;
+  --accent-3: #38bdf8;
+  --accent-grad: linear-gradient(135deg, #6c63ff 0%, #a855f7 50%, #ec4899 100%);
+  --accent-grad-2: linear-gradient(135deg, #38bdf8 0%, #6c63ff 100%);
+  --text-primary: #f0f0ff;
+  --text-secondary: rgba(240,240,255,0.6);
+  --text-muted: rgba(240,240,255,0.35);
+  --shadow-glow: 0 0 40px rgba(108,99,255,0.25);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --bg-primary: #f5f5ff;
+  --bg-secondary: #eeeeff;
+  --bg-card: rgba(255,255,255,0.7);
+  --bg-glass: rgba(255,255,255,0.75);
+  --border-glass: rgba(108,99,255,0.15);
+  --text-primary: #100f2c;
+  --text-secondary: rgba(16,15,44,0.65);
+  --text-muted: rgba(16,15,44,0.4);
+  --shadow-glow: 0 0 40px rgba(108,99,255,0.15);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+button, input, textarea, select {
+  font-family: inherit;
+  outline: none;
+  border: none;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 3px; }
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; position: relative; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent-1); margin-bottom: 16px;
+}
+.section-label::before {
+  content: ''; display: block; width: 28px; height: 2px;
+  background: var(--accent-grad);
+}
+.section-title {
+  font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.15;
+  background: var(--accent-grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-size: 1.05rem; color: var(--text-secondary); max-width: 580px;
+  line-height: 1.7;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: 50px;
+  font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition); position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--accent-grad); color: #fff;
+  box-shadow: 0 8px 32px rgba(108,99,255,0.4);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(108,99,255,0.55); }
+.btn-outline {
+  background: transparent; color: var(--text-primary);
+  border: 1.5px solid var(--border-glass);
+  backdrop-filter: blur(10px);
+}
+.btn-outline:hover { border-color: var(--accent-1); color: var(--accent-1); }
+
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ============================================================
+   NOISE OVERLAY
+   ============================================================ */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999; opacity: 0.4;
+}
+
+/* ============================================================
+   CURSOR
+   ============================================================ */
+.cursor {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent-1); position: fixed;
+  pointer-events: none; z-index: 9998; transition: transform 0.15s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--accent-1); position: fixed;
+  pointer-events: none; z-index: 9997;
+  transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.3s;
+  mix-blend-mode: difference;
+}
+
+/* ============================================================
+   TOPBAR / NAV
+   ============================================================ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  transition: var(--transition);
+  padding: 18px 0;
+}
+#navbar.scrolled {
+  background: var(--bg-glass);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 12px 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-logo-mark {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--accent-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: #fff;
+  box-shadow: 0 4px 16px rgba(108,99,255,0.5);
+}
+.nav-logo-text {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+  line-height: 1.2;
+}
+.nav-logo-text span { font-weight: 400; color: var(--text-secondary); font-size: 0.72rem; display: block; }
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+}
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--text-secondary);
+  position: relative; transition: color var(--transition);
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1.5px; background: var(--accent-grad);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.lang-select {
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  color: var(--text-secondary); padding: 8px 12px; border-radius: 8px;
+  font-size: 0.82rem; cursor: pointer; transition: var(--transition);
+}
+.lang-select:hover { border-color: var(--accent-1); color: var(--text-primary); }
+.theme-toggle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-secondary); font-size: 1rem;
+  transition: var(--transition);
+}
+.theme-toggle:hover { border-color: var(--accent-1); color: var(--accent-1); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 36px; height: 36px; align-items: center; justify-content: center;
+  cursor: pointer; border-radius: 8px;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+}
+.hamburger span {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--text-primary); transition: var(--transition);
+}
+/* Mobile nav */
+.mobile-nav {
+  position: fixed; inset: 0; background: var(--bg-glass);
+  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
+  z-index: 999; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 32px;
+  transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav a {
+  font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+  color: var(--text-primary); transition: color var(--transition);
+}
+.mobile-nav a:hover { color: var(--accent-1); }
+.mobile-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.2rem; color: var(--text-primary);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center; overflow: hidden;
+}
+#hero-canvas {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-glow-1 {
+  position: absolute; top: -20%; left: -10%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute; bottom: -10%; right: -10%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: center; padding: 120px 0 80px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  border-radius: 50px; padding: 8px 20px; margin-bottom: 24px;
+  font-size: 0.82rem; font-weight: 500; color: var(--accent-1);
+  backdrop-filter: blur(10px);
+}
+.hero-eyebrow i { font-size: 0.7rem; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.hero-heading {
+  font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 800; line-height: 1.1; margin-bottom: 24px;
+}
+.hero-heading .line { display: block; overflow: hidden; }
+.hero-heading .highlight {
+  background: var(--accent-grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-desc {
+  font-size: 1.1rem; color: var(--text-secondary); line-height: 1.75;
+  margin-bottom: 40px; max-width: 480px;
+}
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-stats {
+  display: flex; gap: 32px;
+}
+.hero-stat { display: flex; flex-direction: column; }
+.hero-stat-num {
+  font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800;
+  background: var(--accent-grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+/* 3D Card side */
+.hero-3d-wrap {
+  position: relative; display: flex; justify-content: center; align-items: center;
+}
+.hero-card-3d {
+  width: 340px; height: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  backdrop-filter: blur(30px);
+  padding: 40px 32px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+  box-shadow: var(--shadow-glow), 0 32px 80px rgba(0,0,0,0.4);
+  position: relative; overflow: hidden;
+}
+.hero-card-3d::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, rgba(168,85,247,0.05) 100%);
+  border-radius: inherit;
+}
+.card-top { display: flex; align-items: center; gap: 16px; }
+.card-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff;
+  box-shadow: 0 8px 24px rgba(108,99,255,0.5);
+}
+.card-info p:first-child {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+}
+.card-info p:last-child { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.card-mid { flex: 1; padding: 24px 0; }
+.card-quote {
+  font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary);
+  font-style: italic;
+}
+.card-quote strong { color: var(--accent-1); font-style: normal; font-weight: 700; }
+.card-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.card-skill {
+  padding: 5px 14px; border-radius: 50px;
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(108,99,255,0.12); color: var(--accent-1);
+  border: 1px solid rgba(108,99,255,0.2);
+}
+.card-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-progress-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; }
+.card-progress-bar {
+  height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06);
+  overflow: hidden; width: 180px;
+}
+.card-progress-fill {
+  height: 100%; background: var(--accent-grad); border-radius: 2px;
+  width: 78%; animation: progressAnim 3s ease-in-out infinite alternate;
+}
+@keyframes progressAnim { from{width:60%} to{width:88%} }
+.card-badge {
+  padding: 8px 16px; border-radius: 50px;
+  background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2);
+  font-size: 0.75rem; font-weight: 600; color: var(--accent-3);
+}
+/* Floating orbit dots */
+.orbit-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px dashed rgba(108,99,255,0.2);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+.orbit-1 { width: 420px; height: 420px; animation: rotate 18s linear infinite; }
+.orbit-2 { width: 520px; height: 520px; animation: rotate 28s linear infinite reverse; }
+.orbit-dot {
+  position: absolute; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-1); top: -4px; left: 50%; transform: translateX(-50%);
+  box-shadow: 0 0 12px var(--accent-1);
+}
+.orbit-dot-2 {
+  background: var(--accent-2); box-shadow: 0 0 12px var(--accent-2);
+  top: auto; bottom: -4px;
+}
+@keyframes rotate { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
+
+/* ============================================================
+   MARQUEE / SCROLL TICKER
+   ============================================================ */
+.marquee-section {
+  overflow: hidden; background: var(--bg-secondary);
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+  padding: 20px 0;
+}
+.marquee-inner {
+  display: flex; gap: 60px; animation: marqueeAnim 25s linear infinite;
+  white-space: nowrap;
+}
+@keyframes marqueeAnim { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marquee-item {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.marquee-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-1);
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+#about { background: var(--bg-secondary); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-visual {
+  position: relative;
+}
+.about-img-wrap {
+  width: 100%; aspect-ratio: 4/5; border-radius: 24px;
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(168,85,247,0.1));
+  border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.about-img-content {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  z-index: 1;
+}
+.founder-avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: var(--accent-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: #fff;
+  box-shadow: 0 16px 48px rgba(108,99,255,0.5);
+  border: 3px solid rgba(255,255,255,0.15);
+}
+.founder-name {
+  font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+  text-align: center;
+}
+.founder-role { font-size: 0.88rem; color: var(--accent-1); text-align: center; }
+.founder-socials { display: flex; gap: 12px; margin-top: 8px; }
+.social-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; color: var(--text-secondary);
+  transition: var(--transition); cursor: pointer;
+}
+.social-icon:hover { background: var(--accent-1); border-color: var(--accent-1); color: #fff; transform: translateY(-2px); }
+/* Floating badges on about card */
+.about-badge {
+  position: absolute;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  backdrop-filter: blur(20px); border-radius: var(--radius-sm);
+  padding: 12px 18px; display: flex; align-items: center; gap: 10px;
+  font-size: 0.82rem; font-weight: 500;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: floatBadge 4s ease-in-out infinite alternate;
+}
+@keyframes floatBadge { from{transform:translateY(0)} to{transform:translateY(-12px)} }
+.about-badge-1 { top: 30px; right: -40px; animation-delay: 0s; }
+.about-badge-2 { bottom: 60px; left: -40px; animation-delay: 1.5s; }
+.badge-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent-grad); display: flex; align-items: center;
+  justify-content: center; font-size: 0.9rem; color: #fff;
+}
+.about-content { display: flex; flex-direction: column; gap: 32px; }
+.about-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; }
+.about-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.about-mini-card {
+  padding: 24px; border-radius: var(--radius-sm);
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  transition: var(--transition);
+}
+.about-mini-card:hover { border-color: var(--accent-1); transform: translateY(-4px); }
+.mini-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--accent-1); margin-bottom: 12px;
+}
+.mini-card-title {
+  font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700;
+  margin-bottom: 4px;
+}
+.mini-card-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
+#services { background: var(--bg-primary); }
+.services-header { text-align: center; margin-bottom: 60px; }
+.services-header .section-subtitle { margin: 0 auto; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.service-card {
+  padding: 36px 32px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  backdrop-filter: blur(20px); position: relative; overflow: hidden;
+  transition: var(--transition); cursor: default;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent-grad); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--transition);
+}
+.service-card:hover { transform: translateY(-8px); border-color: rgba(108,99,255,0.3); box-shadow: var(--shadow-glow); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-card-bg {
+  position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  opacity: 0.06; transition: var(--transition);
+}
+.service-card:hover .service-card-bg { opacity: 0.12; transform: scale(1.3); }
+.service-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.service-num {
+  position: absolute; top: 24px; right: 28px;
+  font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+  color: rgba(108,99,255,0.06);
+}
+.service-title {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  margin-bottom: 12px; position: relative; z-index: 1;
+}
+.service-desc {
+  font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;
+  position: relative; z-index: 1;
+}
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; position: relative; z-index: 1; }
+.service-tag {
+  padding: 4px 12px; border-radius: 50px; font-size: 0.72rem; font-weight: 600;
+  background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.15);
+  color: var(--accent-1);
+}
+
+/* colors per service */
+.svc-1 .service-icon { background: rgba(108,99,255,0.1); color: #6c63ff; border: 1px solid rgba(108,99,255,0.2); }
+.svc-1 .service-card-bg { background: #6c63ff; }
+.svc-2 .service-icon { background: rgba(168,85,247,0.1); color: #a855f7; border: 1px solid rgba(168,85,247,0.2); }
+.svc-2 .service-card-bg { background: #a855f7; }
+.svc-3 .service-icon { background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); }
+.svc-3 .service-card-bg { background: #38bdf8; }
+.svc-4 .service-icon { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+.svc-4 .service-card-bg { background: #34d399; }
+.svc-5 .service-icon { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid rgba(251,146,60,0.2); }
+.svc-5 .service-card-bg { background: #fb923c; }
+.svc-6 .service-icon { background: rgba(236,72,153,0.1); color: #ec4899; border: 1px solid rgba(236,72,153,0.2); }
+.svc-6 .service-card-bg { background: #ec4899; }
+
+/* ============================================================
+   DASHBOARD SECTION
+   ============================================================ */
+#dashboard { background: var(--bg-secondary); }
+.dash-header { text-align: center; margin-bottom: 60px; }
+.dash-grid {
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start;
+}
+.dash-sidebar {
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  border-radius: var(--radius); overflow: hidden; backdrop-filter: blur(20px);
+}
+.dash-user {
+  padding: 28px 24px; background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(168,85,247,0.08));
+  border-bottom: 1px solid var(--border-glass); display: flex; align-items: center; gap: 14px;
+}
+.dash-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent-grad); display: flex; align-items: center;
+  justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1rem; color: #fff;
+}
+.dash-username { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+.dash-role {
+  display: inline-block; padding: 3px 10px; border-radius: 50px;
+  font-size: 0.7rem; font-weight: 600;
+  background: rgba(108,99,255,0.15); color: var(--accent-1);
+  margin-top: 3px;
+}
+.dash-nav-item {
+  padding: 14px 24px; display: flex; align-items: center; gap: 14px;
+  font-size: 0.88rem; font-weight: 500; color: var(--text-secondary);
+  cursor: pointer; transition: var(--transition);
+  border-left: 2px solid transparent;
+}
+.dash-nav-item:hover, .dash-nav-item.active {
+  background: rgba(108,99,255,0.07); color: var(--accent-1);
+  border-left-color: var(--accent-1);
+}
+.dash-nav-item i { width: 18px; text-align: center; }
+.dash-main { display: flex; flex-direction: column; gap: 24px; }
+.dash-stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.dash-stat-card {
+  padding: 24px 20px; background: var(--bg-card);
+  border: 1px solid var(--border-glass); border-radius: var(--radius-sm);
+  backdrop-filter: blur(20px);
+}
+.dash-stat-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.dash-stat-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+}
+.dash-stat-change {
+  font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 50px;
+}
+.positive { color: #34d399; background: rgba(52,211,153,0.1); }
+.dash-stat-val {
+  font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
+  margin-bottom: 2px;
+}
+.dash-stat-lbl { font-size: 0.78rem; color: var(--text-muted); }
+/* Charts mock */
+.dash-charts { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+.dash-chart-card {
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); padding: 24px; backdrop-filter: blur(20px);
+}
+.chart-title {
+  font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
+  margin-bottom: 20px;
+}
+.progress-list { display: flex; flex-direction: column; gap: 16px; }
+.progress-item {}
+.progress-item-top {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+}
+.progress-item-name { font-size: 0.82rem; font-weight: 500; }
+.progress-item-pct { font-size: 0.78rem; color: var(--text-muted); }
+.progress-track {
+  height: 6px; border-radius: 3px; background: rgba(255,255,255,0.05); overflow: hidden;
+}
+.progress-fill { height: 100%; border-radius: 3px; }
+.bar-purple { background: linear-gradient(90deg, #6c63ff, #a855f7); }
+.bar-blue { background: linear-gradient(90deg, #38bdf8, #6c63ff); }
+.bar-green { background: linear-gradient(90deg, #34d399, #38bdf8); }
+.bar-orange { background: linear-gradient(90deg, #fb923c, #ec4899); }
+.activity-list { display: flex; flex-direction: column; gap: 12px; }
+.activity-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: 10px;
+  background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass);
+  transition: var(--transition);
+}
+.activity-item:hover { background: rgba(108,99,255,0.06); border-color: rgba(108,99,255,0.2); }
+.activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.activity-text { font-size: 0.82rem; color: var(--text-secondary); flex: 1; }
+.activity-time { font-size: 0.72rem; color: var(--text-muted); }
+
+/* ============================================================
+   TESTIMONIALS SECTION
+   ============================================================ */
+#testimonials { background: var(--bg-primary); overflow: hidden; }
+.testimonials-header { text-align: center; margin-bottom: 60px; }
+.testimonials-track {
+  display: flex; gap: 24px;
+  animation: scrollTestimonials 30s linear infinite;
+  width: max-content;
+}
+.testimonials-track:hover { animation-play-state: paused; }
+@keyframes scrollTestimonials {
+  from{transform:translateX(0)} to{transform:translateX(-50%)}
+}
+.testimonial-card {
+  width: 360px; flex-shrink: 0;
+  padding: 32px 28px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  backdrop-filter: blur(20px);
+}
+.stars { display: flex; gap: 4px; margin-bottom: 16px; }
+.stars i { color: #fbbf24; font-size: 0.85rem; }
+.t-text { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 20px; }
+.t-author { display: flex; align-items: center; gap: 14px; }
+.t-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; color: #fff;
+}
+.t-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; }
+.t-role { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+#contact { background: var(--bg-secondary); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 32px; }
+.contact-info-item { display: flex; align-items: flex-start; gap: 20px; }
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+  background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--accent-1);
+}
+.contact-item-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 4px; }
+.contact-item-val { font-size: 0.88rem; color: var(--text-secondary); }
+.contact-social-row { display: flex; gap: 12px; }
+.contact-social-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: var(--transition);
+}
+.wa-btn {
+  background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.25);
+  color: #25d366;
+}
+.wa-btn:hover { background: #25d366; color: #fff; }
+.ig-btn {
+  background: rgba(225,48,108,0.1); border: 1px solid rgba(225,48,108,0.25);
+  color: #e1306c;
+}
+.ig-btn:hover { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color: #fff; }
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); }
+.form-input {
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  color: var(--text-primary); font-size: 0.9rem;
+  transition: var(--transition);
+}
+.form-input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
+  background: rgba(108,99,255,0.04);
+}
+textarea.form-input { resize: vertical; min-height: 130px; }
+.form-input::placeholder { color: var(--text-muted); }
+.form-success {
+  padding: 16px 20px; border-radius: var(--radius-sm);
+  background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25);
+  color: #34d399; font-size: 0.88rem; display: none;
+}
+
+/* ============================================================
+   AUTH MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px); z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  width: 460px; max-width: calc(100vw - 40px);
+  background: var(--bg-secondary); border: 1px solid var(--border-glass);
+  border-radius: 24px; overflow: hidden;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.modal-overlay.open .modal-box { transform: none; }
+.modal-header {
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(168,85,247,0.1));
+  padding: 32px 36px 24px; border-bottom: 1px solid var(--border-glass);
+}
+.modal-title {
+  font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; margin-bottom: 4px;
+}
+.modal-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 0.9rem; color: var(--text-secondary);
+  transition: var(--transition);
+}
+.modal-close:hover { background: var(--accent-1); color: #fff; }
+.modal-body { padding: 32px 36px; }
+.modal-tabs { display: flex; gap: 0; margin-bottom: 28px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-glass); }
+.modal-tab {
+  flex: 1; padding: 11px; text-align: center;
+  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; background: transparent; color: var(--text-muted);
+  transition: var(--transition);
+}
+.modal-tab.active { background: var(--accent-1); color: #fff; }
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+.role-select-row { display: flex; gap: 10px; }
+.role-option {
+  flex: 1; padding: 10px; border-radius: 8px; text-align: center;
+  font-size: 0.8rem; font-weight: 600; cursor: pointer;
+  background: var(--bg-card); border: 1.5px solid var(--border-glass);
+  color: var(--text-muted); transition: var(--transition);
+}
+.role-option.selected { border-color: var(--accent-1); color: var(--accent-1); background: rgba(108,99,255,0.08); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-glass);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin: 16px 0 24px; }
+.footer-col-title {
+  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
+  color: var(--text-primary);
+}
+.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+  font-size: 0.88rem; color: var(--text-muted); transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--accent-1); }
+.footer-newsletter { margin-top: 0; }
+.newsletter-input-row {
+  display: flex; gap: 0; border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--border-glass); margin-top: 12px;
+}
+.newsletter-input {
+  flex: 1; padding: 12px 16px; background: var(--bg-card);
+  color: var(--text-primary); font-size: 0.85rem; border: none;
+}
+.newsletter-btn {
+  padding: 12px 20px; background: var(--accent-grad);
+  color: #fff; font-size: 0.8rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition); white-space: nowrap;
+}
+.newsletter-btn:hover { opacity: 0.9; }
+.footer-bottom {
+  border-top: 1px solid var(--border-glass); padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 0.82rem; color: var(--text-muted); }
+.footer-copy a { color: var(--accent-1); }
+.footer-social { display: flex; gap: 10px; }
+
+/* ============================================================
+   SCROLL TOP
+   ============================================================ */
+.scroll-top {
+  position: fixed; bottom: 32px; right: 32px;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent-grad); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 500; box-shadow: 0 8px 24px rgba(108,99,255,0.5);
+  opacity: 0; transform: translateY(20px);
+  transition: var(--transition);
+}
+.scroll-top.visible { opacity: 1; transform: none; }
+.scroll-top:hover { transform: translateY(-3px); }
+
+/* ============================================================
+   BLOG / NEWSLETTER CTA
+   ============================================================ */
+.newsletter-cta {
+  background: var(--bg-secondary); padding: 80px 0;
+  text-align: center; border-top: 1px solid var(--border-glass);
+}
+.newsletter-cta-title {
+  font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 800; margin-bottom: 12px;
+}
+.newsletter-cta-sub { color: var(--text-secondary); margin-bottom: 32px; }
+.newsletter-form-inline {
+  display: flex; gap: 0; max-width: 460px; margin: 0 auto;
+  border-radius: 50px; overflow: hidden;
+  border: 1px solid var(--border-glass); background: var(--bg-card);
+}
+.newsletter-form-inline input {
+  flex: 1; padding: 16px 24px; background: transparent;
+  color: var(--text-primary); font-size: 0.9rem;
+}
+.newsletter-form-inline button {
+  padding: 16px 28px; background: var(--accent-grad);
+  color: #fff; font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: var(--transition);
+}
+.newsletter-form-inline button:hover { opacity: 0.9; }
+
+/* ============================================================
+   PAGE LOADER
+   ============================================================ */
+#page-loader {
+  position: fixed; inset: 0; background: var(--bg-primary);
+  z-index: 99999; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 24px;
+  transition: opacity 0.5s;
+}
+.loader-logo {
+  font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+  background: var(--accent-grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.loader-bar {
+  width: 200px; height: 3px; border-radius: 2px;
+  background: rgba(108,99,255,0.15); overflow: hidden;
+}
+.loader-fill {
+  height: 100%; background: var(--accent-grad);
+  border-radius: 2px; animation: loadAnim 1.8s ease-in-out forwards;
+}
+@keyframes loadAnim { from{width:0} to{width:100%} }
+.loader-text { font-size: 0.82rem; color: var(--text-muted); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-3d-wrap { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-visual { max-width: 400px; }
+  .services-grid { grid-template-columns: repeat(2,1fr); }
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-sidebar { display: flex; flex-direction: row; overflow-x: auto; }
+  .dash-user { flex-shrink: 0; }
+  .dash-nav-item { flex-shrink: 0; }
+  .dash-stats-row { grid-template-columns: repeat(2,1fr); }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .section { padding: 70px 0; }
+  .nav-links, .nav-actions .lang-select { display: none; }
+  .hamburger { display: flex; }
+  .services-grid { grid-template-columns: 1fr; }
+  .dash-charts { grid-template-columns: 1fr; }
+  .about-badge-1, .about-badge-2 { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { gap: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .dash-stats-row { grid-template-columns: 1fr 1fr; }
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">DD-Solutions</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-text" id="loader-text">Initializing...</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <button class="mobile-close" id="mobile-close"><i class="fa fa-times"></i></button>
+  <a href="#hero" class="mobile-link">Home</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#dashboard" class="mobile-link">Dashboard</a>
+  <a href="#testimonials" class="mobile-link">Reviews</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</nav>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal-box" style="position:relative">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Welcome Back 👋</div>
+      <div class="modal-subtitle">Access your personalized dashboard</div>
+      <button class="modal-close" id="modal-close"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="login">Sign In</button>
+        <button class="modal-tab" data-tab="signup">Sign Up</button>
+      </div>
+      <!-- Login Form -->
+      <div id="login-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="••••••••" />
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px" onclick="loginDemo()">
+          <i class="fa fa-sign-in-alt"></i> Sign In
+        </button>
+        <p style="text-align:center;font-size:0.8rem;color:var(--text-muted)">
+          Demo: student@dd.com | professional@dd.com | admin@dd.com
+        </p>
+      </div>
+      <!-- Signup Form -->
+      <div id="signup-form" class="auth-form" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="Arjun" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Kumar" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Select Your Role</label>
+          <div class="role-select-row">
+            <div class="role-option selected" data-role="student"><i class="fa fa-graduation-cap"></i><br>Student</div>
+            <div class="role-option" data-role="professional"><i class="fa fa-briefcase"></i><br>Professional</div>
+            <div class="role-option" data-role="admin"><i class="fa fa-shield-alt"></i><br>Admin</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Create strong password" />
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">
+          <i class="fa fa-user-plus"></i> Create Account
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-mark">DD</div>
+        <div class="nav-logo-text">
+          DD-Solutions
+          <span>by Singothu Dinesh</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <select class="lang-select" id="lang-select" onchange="changeLang(this.value)">
+          <option value="en">🌐 English</option>
+          <option value="te">🌐 Telugu</option>
+          <option value="hi">🌐 Hindi</option>
+        </select>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+          <i class="fa fa-moon"></i>
+        </button>
+        <button class="btn btn-primary" style="padding:10px 22px;font-size:0.84rem" onclick="openAuth()">
+          <i class="fa fa-user"></i> Login
+        </button>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== HERO ====================== -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <i class="fa fa-circle"></i>
+          <span id="hero-eyebrow-text">Now Enrolling 2025 Batch</span>
+        </div>
+        <h1 class="hero-heading">
+          <span class="line" id="hero-line-1">Unlock Your</span>
+          <span class="line highlight" id="hero-line-2">Full Potential.</span>
+          <span class="line" id="hero-line-3">Build. Grow. Succeed.</span>
+        </h1>
+        <p class="hero-desc" id="hero-desc">
+          DD-Solutions empowers students (10th to B.Tech) and working professionals with world-class tools, mentorship, and resources to accelerate careers and transform futures.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="openAuth()">
+            <i class="fa fa-rocket"></i> Start Your Journey
+          </button>
+          <a href="#services" class="btn btn-outline">
+            <i class="fa fa-play-circle"></i> Explore Services
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="5000">0</span>
+            <span class="hero-stat-label">Students Enrolled</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="98">0</span>
+            <span class="hero-stat-label" style="max-width:90px">% Placement Rate</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="120">0</span>
+            <span class="hero-stat-label">Expert Mentors</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-3d-wrap">
+        <div class="orbit-ring orbit-1"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring orbit-2"><div class="orbit-dot orbit-dot-2"></div></div>
+        <div class="hero-card-3d" id="hero-card">
+          <div class="card-top">
+            <div class="card-avatar">SD</div>
+            <div class="card-info">
+              <p>Singothu Dinesh</p>
+              <p>Founder, DD-Solutions</p>
+            </div>
+          </div>
+          <div class="card-mid">
+            <p class="card-quote">
+              "Every student deserves a <strong>world-class mentor</strong>. Every professional deserves a <strong>breakthrough</strong>."
+            </p>
+            <div class="card-skills">
+              <span class="card-skill">Career Growth</span>
+              <span class="card-skill">Resume Builder</span>
+              <span class="card-skill">Mentorship</span>
+              <span class="card-skill">Analytics</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <div>
+              <div class="card-progress-label">Student Success Rate</div>
+              <div class="card-progress-bar"><div class="card-progress-fill"></div></div>
+            </div>
+            <div class="card-badge">⭐ Top Rated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-inner" id="marquee">
+    <div class="marquee-item"><div class="marquee-dot"></div>Resume Building</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Career Mentorship</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Progress Tracking</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>B.Tech Guidance</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Job Preparation</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Skill Development</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Industry Connect</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Admin Dashboard</div>
+    <!-- Duplicate for seamless -->
+    <div class="marquee-item"><div class="marquee-dot"></div>Resume Building</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Career Mentorship</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Progress Tracking</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>B.Tech Guidance</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Job Preparation</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Skill Development</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Industry Connect</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Admin Dashboard</div>
+  </div>
+</div>
+
+<!-- ====================== ABOUT ====================== -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <div class="about-img-content">
+            <div class="founder-avatar">SD</div>
+            <div class="founder-name">Singothu Dinesh</div>
+            <div class="founder-role">Founder & Director, DD-Solutions</div>
+            <div class="founder-socials">
+              <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+              <a href="mailto:contact@ddsolutions.in" class="social-icon"><i class="fa fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="about-badge about-badge-1">
+          <div class="badge-icon"><i class="fa fa-trophy"></i></div>
+          <div>
+            <div style="font-weight:700;font-size:0.85rem">5000+ Students</div>
+            <div style="font-size:0.72rem;color:var(--text-muted)">Mentored & Placed</div>
+          </div>
+        </div>
+        <div class="about-badge about-badge-2">
+          <div class="badge-icon" style="background:linear-gradient(135deg,#34d399,#38bdf8)"><i class="fa fa-star"></i></div>
+          <div>
+            <div style="font-weight:700;font-size:0.85rem">4.9 / 5 Rating</div>
+            <div style="font-size:0.72rem;color:var(--text-muted)">Average Review Score</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div>
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title" id="about-title">Who We Are</h2>
+          <p class="section-subtitle" id="about-subtitle">Bridging the gap between education and employment for every aspiring student and professional.</p>
+        </div>
+        <p class="about-text" id="about-text">
+          Founded by <strong>Singothu Dinesh</strong>, DD-Solutions was born from a simple yet powerful belief — that every student, from 10th standard to B.Tech final year, and every working professional deserves a fair shot at their dream career. We combine cutting-edge technology with personalized mentorship to create transformative learning experiences.
+        </p>
+        <div class="about-cards">
+          <div class="about-mini-card">
+            <div class="mini-icon"><i class="fa fa-eye"></i></div>
+            <div class="mini-card-title" id="vision-title">Our Vision</div>
+            <div class="mini-card-text" id="vision-text">To become India's most trusted career acceleration platform for students and professionals.</div>
+          </div>
+          <div class="about-mini-card">
+            <div class="mini-icon" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.2);color:#a855f7"><i class="fa fa-bullseye"></i></div>
+            <div class="mini-card-title" id="mission-title">Our Mission</div>
+            <div class="mini-card-text" id="mission-text">Deliver world-class mentorship, tools, and resources at accessible prices for every young Indian.</div>
+          </div>
+          <div class="about-mini-card">
+            <div class="mini-icon" style="background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.2);color:#34d399"><i class="fa fa-users"></i></div>
+            <div class="mini-card-title">Community</div>
+            <div class="mini-card-text">10,000+ member network of alumni, mentors, and industry professionals actively helping each other.</div>
+          </div>
+          <div class="about-mini-card">
+            <div class="mini-icon" style="background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.2);color:#38bdf8"><i class="fa fa-award"></i></div>
+            <div class="mini-card-title">Excellence</div>
+            <div class="mini-card-text">Award-winning programs with 98% student satisfaction and measurable career outcomes.</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="align-self:flex-start">
+          <i class="fa fa-handshake"></i> Partner With Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SERVICES ====================== -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Comprehensive support designed to accelerate your career at every stage of your journey.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card svc-1" data-aos>
+        <div class="service-num">01</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-file-alt"></i></div>
+        <div class="service-title">Smart Resume Builder</div>
+        <p class="service-desc">AI-powered resume creator tailored for freshers and experienced professionals. ATS-optimized templates with real-time preview.</p>
+        <div class="service-tags"><span class="service-tag">ATS Friendly</span><span class="service-tag">AI Powered</span></div>
+      </div>
+      <div class="service-card svc-2" data-aos>
+        <div class="service-num">02</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-chart-line"></i></div>
+        <div class="service-title">Progress Tracking</div>
+        <p class="service-desc">Visual dashboards to monitor your learning journey, skill development milestones, and career readiness score.</p>
+        <div class="service-tags"><span class="service-tag" style="color:#a855f7;background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.2)">Analytics</span><span class="service-tag" style="color:#a855f7;background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.2)">Insights</span></div>
+      </div>
+      <div class="service-card svc-3" data-aos>
+        <div class="service-num">03</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-user-tie"></i></div>
+        <div class="service-title">Career Mentorship</div>
+        <p class="service-desc">1-on-1 sessions with industry professionals. Get personalized guidance for interviews, skill gaps, and career transitions.</p>
+        <div class="service-tags"><span class="service-tag" style="color:#38bdf8;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2)">1-on-1</span><span class="service-tag" style="color:#38bdf8;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2)">Expert</span></div>
+      </div>
+      <div class="service-card svc-4" data-aos>
+        <div class="service-num">04</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="service-title">Student Records Portal</div>
+        <p class="service-desc">Centralized hub for academic records, certificates, projects, and achievements — organized, secure, and shareable.</p>
+        <div class="service-tags"><span class="service-tag" style="color:#34d399;background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2)">Secure</span><span class="service-tag" style="color:#34d399;background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2)">Cloud</span></div>
+      </div>
+      <div class="service-card svc-5" data-aos>
+        <div class="service-num">05</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-briefcase"></i></div>
+        <div class="service-title">Job Placement Support</div>
+        <p class="service-desc">Direct referrals to hiring companies, mock interviews, HR preparation, and offer negotiation coaching.</p>
+        <div class="service-tags"><span class="service-tag" style="color:#fb923c;background:rgba(251,146,60,.08);border-color:rgba(251,146,60,.2)">Placement</span><span class="service-tag" style="color:#fb923c;background:rgba(251,146,60,.08);border-color:rgba(251,146,60,.2)">Referrals</span></div>
+      </div>
+      <div class="service-card svc-6" data-aos>
+        <div class="service-num">06</div>
+        <div class="service-card-bg"></div>
+        <div class="service-icon"><i class="fa fa-code"></i></div>
+        <div class="service-title">Skill Development</div>
+        <p class="service-desc">Curated learning paths in coding, communication, leadership, and domain-specific skills for today's job market.</p>
+        <div class="service-tags"><span class="service-tag" style="color:#ec4899;background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2)">Courses</span><span class="service-tag" style="color:#ec4899;background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2)">Certification</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== DASHBOARD ====================== -->
+<section id="dashboard" class="section">
+  <div class="container">
+    <div class="dash-header">
+      <div class="section-label">Platform Preview</div>
+      <h2 class="section-title">Student Dashboard</h2>
+      <p class="section-subtitle" style="margin:0 auto">Track everything in one powerful, intuitive dashboard built for your success.</p>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-sidebar glass-card">
+        <div class="dash-user">
+          <div class="dash-avatar">AK</div>
+          <div>
+            <div class="dash-username">Arjun Kumar</div>
+            <div class="dash-role">Student</div>
+          </div>
+        </div>
+        <div class="dash-nav-item active"><i class="fa fa-home"></i> Overview</div>
+        <div class="dash-nav-item"><i class="fa fa-file-alt"></i> My Resume</div>
+        <div class="dash-nav-item"><i class="fa fa-tasks"></i> Progress</div>
+        <div class="dash-nav-item"><i class="fa fa-folder-open"></i> Records</div>
+        <div class="dash-nav-item"><i class="fa fa-calendar-check"></i> Sessions</div>
+        <div class="dash-nav-item"><i class="fa fa-cog"></i> Settings</div>
+      </div>
+      <div class="dash-main">
+        <div class="dash-stats-row">
+          <div class="dash-stat-card glass-card">
+            <div class="dash-stat-top">
+              <div class="dash-stat-icon" style="background:rgba(108,99,255,0.1);color:#6c63ff"><i class="fa fa-star"></i></div>
+              <span class="dash-stat-change positive">+12%</span>
+            </div>
+            <div class="dash-stat-val">78%</div>
+            <div class="dash-stat-lbl">Career Readiness</div>
+          </div>
+          <div class="dash-stat-card glass-card">
+            <div class="dash-stat-top">
+              <div class="dash-stat-icon" style="background:rgba(168,85,247,0.1);color:#a855f7"><i class="fa fa-book-open"></i></div>
+              <span class="dash-stat-change positive">+3</span>
+            </div>
+            <div class="dash-stat-val">12</div>
+            <div class="dash-stat-lbl">Skills Added</div>
+          </div>
+          <div class="dash-stat-card glass-card">
+            <div class="dash-stat-top">
+              <div class="dash-stat-icon" style="background:rgba(56,189,248,0.1);color:#38bdf8"><i class="fa fa-users"></i></div>
+              <span class="dash-stat-change positive">+2</span>
+            </div>
+            <div class="dash-stat-val">5</div>
+            <div class="dash-stat-lbl">Mentor Sessions</div>
+          </div>
+          <div class="dash-stat-card glass-card">
+            <div class="dash-stat-top">
+              <div class="dash-stat-icon" style="background:rgba(52,211,153,0.1);color:#34d399"><i class="fa fa-file-alt"></i></div>
+              <span class="dash-stat-change positive">Updated</span>
+            </div>
+            <div class="dash-stat-val">3</div>
+            <div class="dash-stat-lbl">Resume Versions</div>
+          </div>
+        </div>
+        <div class="dash-charts">
+          <div class="dash-chart-card glass-card">
+            <div class="chart-title">Skill Progress Tracker</div>
+            <div class="progress-list">
+              <div class="progress-item">
+                <div class="progress-item-top"><span class="progress-item-name">Communication Skills</span><span class="progress-item-pct">88%</span></div>
+                <div class="progress-track"><div class="progress-fill bar-purple" style="width:88%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-item-top"><span class="progress-item-name">Technical Knowledge</span><span class="progress-item-pct">72%</span></div>
+                <div class="progress-track"><div class="progress-fill bar-blue" style="width:72%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-item-top"><span class="progress-item-name">Problem Solving</span><span class="progress-item-pct">65%</span></div>
+                <div class="progress-track"><div class="progress-fill bar-green" style="width:65%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-item-top"><span class="progress-item-name">Leadership</span><span class="progress-item-pct">55%</span></div>
+                <div class="progress-track"><div class="progress-fill bar-orange" style="width:55%"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-chart-card glass-card">
+            <div class="chart-title">Recent Activity</div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-dot" style="background:#6c63ff"></div>
+                <span class="activity-text">Resume updated — v3.0</span>
+                <span class="activity-time">2h ago</span>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:#a855f7"></div>
+                <span class="activity-text">Mentor session completed</span>
+                <span class="activity-time">1d ago</span>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:#38bdf8"></div>
+                <span class="activity-text">Mock interview scheduled</span>
+                <span class="activity-time">2d ago</span>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:#34d399"></div>
+                <span class="activity-text">Certificate uploaded</span>
+                <span class="activity-time">3d ago</span>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" style="background:#fb923c"></div>
+                <span class="activity-text">Job application sent</span>
+                <span class="activity-time">5d ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TESTIMONIALS ====================== -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label">Success Stories</div>
+      <h2 class="section-title">What Our Community Says</h2>
+      <p class="section-subtitle" style="margin:0 auto">Real transformations from students and professionals who chose DD-Solutions.</p>
+    </div>
+  </div>
+  <div class="testimonials-track" id="testimonials-track">
+    <!-- Testimonials will be injected by JS -->
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div>
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">Let's Connect</h2>
+          <p class="section-subtitle">Have questions? Ready to start? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <div class="contact-item-title">WhatsApp</div>
+            <div class="contact-item-val">+91 XXXXX XXXXX — Chat with us directly</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+          <div>
+            <div class="contact-item-title">Instagram</div>
+            <div class="contact-item-val">@ddsolutions.in — Follow for updates</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+          <div>
+            <div class="contact-item-title">Email</div>
+            <div class="contact-item-val">contact@ddsolutions.in</div>
+          </div>
+        </div>
+        <div class="contact-social-row">
+          <a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="contact-social-btn wa-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+          <a href="https://instagram.com/ddsolutions.in" target="_blank" class="contact-social-btn ig-btn">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+        </div>
+      </div>
+      <form class="contact-form glass-card" style="padding:40px 36px" onsubmit="submitForm(event)">
+        <div class="section-label">Send Message</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" placeholder="Full Name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input class="form-input" type="tel" placeholder="+91 XXXXX XXXXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">I Am A...</label>
+          <select class="form-input">
+            <option>10th / 12th Student</option>
+            <option>Diploma Student</option>
+            <option>B.Tech / Engineering Student</option>
+            <option>Working Professional</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Tell us how we can help you..." required></textarea>
+        </div>
+        <div class="form-success" id="form-success">
+          ✅ Message sent! We'll respond within 24 hours.
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          <i class="fa fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<div class="newsletter-cta">
+  <div class="container">
+    <div class="newsletter-cta-title">Stay Ahead. <span style="background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Join Our Newsletter.</span></div>
+    <p class="newsletter-cta-sub">Get weekly career tips, job openings, and exclusive resources delivered to your inbox.</p>
+    <form class="newsletter-form-inline" onsubmit="subscribeNewsletter(event)">
+      <input type="email" placeholder="Enter your email address" required />
+      <button type="submit"><i class="fa fa-paper-plane"></i> Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom:0">
+          <div class="nav-logo-mark">DD</div>
+          <div class="nav-logo-text">DD-Solutions<span>by Singothu Dinesh</span></div>
+        </div>
+        <p class="footer-brand-desc">Empowering the next generation of students and professionals with tools, mentorship, and guidance to build unstoppable careers.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Resume Builder</a></li>
+          <li><a href="#services">Career Mentorship</a></li>
+          <li><a href="#services">Progress Tracker</a></li>
+          <li><a href="#services">Student Records</a></li>
+          <li><a href="#services">Job Placement</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Founder</a></li>
+          <li><a href="#about">Our Mission</a></li>
+          <li><a href="#testimonials">Success Stories</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Newsletter</div>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">Weekly career tips & resources. No spam ever.</p>
+        <div class="newsletter-input-row">
+          <input class="newsletter-input" type="email" placeholder="your@email.com" />
+          <button class="newsletter-btn">Go →</button>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:12px">🔒 Privacy first. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        © 2025 <a href="#">DD-Solutions</a>. Crafted with ❤️ by Singothu Dinesh. All rights reserved.
+      </div>
+      <div style="display:flex;gap:20px">
+        <a href="#" style="font-size:0.8rem;color:var(--text-muted)">Privacy Policy</a>
+        <a href="#" style="font-size:0.8rem;color:var(--text-muted)">Terms of Service</a>
+        <a href="#" style="font-size:0.8rem;color:var(--text-muted)">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa fa-arrow-up"></i>
+</button>
+
+<script>
+/* ============================================================
+   GSAP + ScrollTrigger
+   ============================================================ */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============================================================
+   PAGE LOADER
+   ============================================================ */
+const loaderTexts = ["Loading assets...", "Building UI...", "Almost there..."];
+let lt = 0;
+const loaderInterval = setInterval(() => {
+  document.getElementById('loader-text').textContent = loaderTexts[lt++ % loaderTexts.length];
+}, 600);
+window.addEventListener('load', () => {
+  clearInterval(loaderInterval);
+  setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; initAnimations(); }, 500);
+  }, 1800);
+});
+
+/* ============================================================
+   THREE.JS HERO CANVAS
+   ============================================================ */
+function initThreeJS() {
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.z = 4;
+
+  // Particles
+  const count = 1800;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const colorPalette = [[0.42, 0.39, 1], [0.66, 0.33, 0.97], [0.22, 0.74, 0.98], [0.93, 0.28, 0.6]];
+
+  for (let i = 0; i < count; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 16;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    colors[i * 3] = c[0]; colors[i * 3 + 1] = c[1]; colors[i * 3 + 2] = c[2];
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const mat = new THREE.PointsMaterial({ size: 0.03, vertexColors: true, transparent: true, opacity: 0.7 });
+  const particles = new THREE.Points(geo, mat);
+  scene.add(particles);
+
+  // Icosahedron wireframe
+  const icoGeo = new THREE.IcosahedronGeometry(1.2, 1);
+  const icoMat = new THREE.MeshBasicMaterial({ color: 0x6c63ff, wireframe: true, transparent: true, opacity: 0.08 });
+  const ico = new THREE.Mesh(icoGeo, icoMat);
+  scene.add(ico);
+
+  // Torus
+  const torGeo = new THREE.TorusGeometry(2.2, 0.006, 8, 80);
+  const torMat = new THREE.MeshBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.12 });
+  const torus = new THREE.Mesh(torGeo, torMat);
+  scene.add(torus);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  const clock = new THREE.Clock();
+  function animate() {
+    const t = clock.getElapsedTime();
+    particles.rotation.y = t * 0.04 + mouseX * 0.1;
+    particles.rotation.x = mouseY * 0.06;
+    ico.rotation.x = t * 0.2;
+    ico.rotation.y = t * 0.15;
+    torus.rotation.x = t * 0.1;
+    torus.rotation.z = t * 0.05;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+initThreeJS();
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let cx = -100, cy = -100, rx = -100, ry = -100;
+document.addEventListener('mousemove', (e) => { cx = e.clientX; cy = e.clientY; });
+function animateCursor() {
+  cursor.style.left = cx - 6 + 'px'; cursor.style.top = cy - 6 + 'px';
+  rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12;
+  cursorRing.style.left = rx - 18 + 'px'; cursorRing.style.top = ry - 18 + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+document.querySelectorAll('a,button,.service-card,.dash-nav-item').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; cursorRing.style.opacity = '0'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorRing.style.opacity = '1'; });
+});
+
+/* ============================================================
+   NAVBAR SCROLL
+   ============================================================ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+/* ============================================================
+   HAMBURGER MENU
+   ============================================================ */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.add('open');
+});
+document.getElementById('mobile-close').addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.remove('open');
+});
+document.querySelectorAll('.mobile-link').forEach(l => {
+  l.addEventListener('click', () => document.getElementById('mobile-nav').classList.remove('open'));
+});
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+const themeToggle = document.getElementById('theme-toggle');
+let isDark = true;
+themeToggle.addEventListener('click', () => {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  themeToggle.innerHTML = isDark ? '<i class="fa fa-moon"></i>' : '<i class="fa fa-sun"></i>';
+});
+
+/* ============================================================
+   AUTH MODAL
+   ============================================================ */
+function openAuth() {
+  document.getElementById('auth-modal').classList.add('open');
+}
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('auth-modal').classList.remove('open');
+});
+document.getElementById('auth-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('auth-modal'))
+    document.getElementById('auth-modal').classList.remove('open');
+});
+document.querySelectorAll('.modal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const t = tab.dataset.tab;
+    document.getElementById('login-form').style.display = t === 'login' ? 'flex' : 'none';
+    document.getElementById('signup-form').style.display = t === 'signup' ? 'flex' : 'none';
+    document.getElementById('modal-title').textContent = t === 'login' ? 'Welcome Back 👋' : 'Join DD-Solutions 🚀';
+  });
+});
+document.querySelectorAll('.role-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.role-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+function loginDemo() {
+  document.getElementById('auth-modal').classList.remove('open');
+  showToast('✅ Login successful! Welcome back.');
+}
+
+/* ============================================================
+   HERO CARD 3D TILT
+   ============================================================ */
+const card = document.getElementById('hero-card');
+if (card) {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 18}deg) rotateX(${-y * 18}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+}
+
+/* ============================================================
+   COUNTER ANIMATION
+   ============================================================ */
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    let count = 0;
+    const step = target / 60;
+    const interval = setInterval(() => {
+      count += step;
+      if (count >= target) { count = target; clearInterval(interval); }
+      el.textContent = Math.floor(count) + (target === 98 ? '%' : target === 5000 ? '+' : '+');
+    }, 25);
+  });
+}
+
+/* ============================================================
+   TESTIMONIALS DATA
+   ============================================================ */
+const testimonials = [
+  { text: "DD-Solutions completely changed my career trajectory. The resume builder and mock interviews got me placed at a top MNC within 3 months!", name: "Ravi Shankar", role: "B.Tech Final Year → Software Engineer", avatar: "RS", color: "#6c63ff" },
+  { text: "As a working professional pivoting careers, the mentorship program was invaluable. Singothu sir personally guided me through every step.", name: "Priya Reddy", role: "IT Professional → Product Manager", avatar: "PR", color: "#a855f7" },
+  { text: "The student dashboard is incredible. I can track all my progress, upload certificates, and my mentor can see exactly where I need help.", name: "Karthik Nair", role: "3rd Year B.Tech Student", avatar: "KN", color: "#38bdf8" },
+  { text: "From a confused 10th pass student to a confident engineer – DD-Solutions gave me direction, skills, and the confidence to succeed.", name: "Anjali Patel", role: "Diploma → B.Tech Engineer", avatar: "AP", color: "#34d399" },
+  { text: "The placement support is second to none. They connected me with companies I didn't even know existed. Got 2 offers in my first week!", name: "Mohammed Arif", role: "Fresher → Full Stack Developer", avatar: "MA", color: "#fb923c" },
+  { text: "Telugu mee gurinchi cheppindi: DD-Solutions is the best investment I made in myself. Every rupee was worth it ten times over!", name: "Sravani Devi", role: "B.Tech CSE Student, Hyderabad", avatar: "SD", color: "#ec4899" },
+];
+
+const track = document.getElementById('testimonials-track');
+const doubled = [...testimonials, ...testimonials];
+doubled.forEach(t => {
+  track.innerHTML += `
+  <div class="testimonial-card">
+    <div class="stars">${'<i class="fas fa-star"></i>'.repeat(5)}</div>
+    <p class="t-text">"${t.text}"</p>
+    <div class="t-author">
+      <div class="t-avatar" style="background:${t.color}">${t.avatar}</div>
+      <div>
+        <div class="t-name">${t.name}</div>
+        <div class="t-role">${t.role}</div>
+      </div>
+    </div>
+  </div>`;
+});
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('form-success').style.display = 'block';
+    btn.innerHTML = '<i class="fa fa-paper-plane"></i> Send Message';
+    btn.disabled = false;
+    e.target.reset();
+    showToast('✅ Message sent successfully!');
+  }, 1500);
+}
+
+function subscribeNewsletter(e) {
+  e.preventDefault();
+  showToast('📧 Subscribed! Welcome to the DD-Solutions community.');
+  e.target.reset();
+}
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.style.cssText = `
+    position:fixed;bottom:80px;right:24px;z-index:9999;
+    background:var(--bg-glass);border:1px solid var(--border-glass);
+    backdrop-filter:blur(20px);padding:14px 20px;border-radius:12px;
+    font-size:0.88rem;color:var(--text-primary);
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    transform:translateY(20px);opacity:0;transition:all 0.35s;
+    max-width:320px;
+  `;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.transform = 'none'; toast.style.opacity = '1'; }, 10);
+  setTimeout(() => {
+    toast.style.transform = 'translateY(20px)'; toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 400);
+  }, 3500);
+}
+
+/* ============================================================
+   MULTI-LANGUAGE
+   ============================================================ */
+const translations = {
+  en: {
+    heroEyebrow: 'Now Enrolling 2025 Batch',
+    heroLine1: 'Unlock Your', heroLine2: 'Full Potential.', heroLine3: 'Build. Grow. Succeed.',
+    heroDesc: 'DD-Solutions empowers students (10th to B.Tech) and working professionals with world-class tools, mentorship, and resources to accelerate careers and transform futures.',
+    aboutTitle: 'Who We Are', aboutSubtitle: 'Bridging the gap between education and employment.',
+    aboutText: 'Founded by Singothu Dinesh, DD-Solutions was born from a simple yet powerful belief — that every student deserves a fair shot at their dream career.',
+    visionTitle: 'Our Vision', visionText: 'To become India\'s most trusted career acceleration platform.',
+    missionTitle: 'Our Mission', missionText: 'Deliver world-class mentorship and tools at accessible prices.',
+  },
+  te: {
+    heroEyebrow: '2025 బ్యాచ్ ఇప్పుడు చేరుకోండి',
+    heroLine1: 'మీ సంభావ్యతను', heroLine2: 'పూర్తిగా వెలికితీయండి.', heroLine3: 'నిర్మించు. ఎదుగు. విజయం పొందు.',
+    heroDesc: 'DD-Solutions విద్యార్థులకు (10వ తరగతి నుండి B.Tech వరకు) మరియు ప్రొఫెషనల్స్‌కు శ్రేష్ఠమైన మార్గదర్శకత్వం అందిస్తుంది.',
+    aboutTitle: 'మేము ఎవరు', aboutSubtitle: 'విద్య మరియు ఉద్యోగం మధ్య అంతరాన్ని తగ్గించడం.',
+    aboutText: 'Singothu Dinesh స్థాపించిన DD-Solutions, ప్రతి విద్యార్థికి వారి కలల కెరీర్ అందుబాటులో ఉండాలని నమ్మకంతో పనిచేస్తుంది.',
+    visionTitle: 'మా దృష్టి', visionText: 'భారతదేశంలో అత్యంత విశ్వసనీయమైన కెరీర్ వేదిక అవ్వడం.',
+    missionTitle: 'మా లక్ష్యం', missionText: 'అందుబాటు ధరలో ప్రపంచ స్థాయి మార్గదర్శకత్వం అందించడం.',
+  },
+  hi: {
+    heroEyebrow: '2025 बैच में दाखिला लें',
+    heroLine1: 'अपनी पूरी', heroLine2: 'क्षमता उजागर करें।', heroLine3: 'बनाएं। बढ़ें। सफल हों।',
+    heroDesc: 'DD-Solutions 10वीं से B.Tech तक के छात्रों और पेशेवरों को विश्व स्तरीय उपकरण, मार्गदर्शन और संसाधन प्रदान करता है।',
+    aboutTitle: 'हम कौन हैं', aboutSubtitle: 'शिक्षा और रोजगार के बीच की खाई को पाटना।',
+    aboutText: 'Singothu Dinesh द्वारा स्थापित, DD-Solutions इस विश्वास से बना है कि हर छात्र अपने सपनों के करियर का हकदार है।',
+    visionTitle: 'हमारा दृष्टिकोण', visionText: 'भारत का सबसे भरोसेमंद करियर त्वरण मंच बनना।',
+    missionTitle: 'हमारा मिशन', missionText: 'सुलभ कीमत पर विश्व स्तरीय मार्गदर्शन प्रदान करना।',
+  }
+};
+function changeLang(lang) {
+  const t = translations[lang];
+  const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setTxt('hero-eyebrow-text', t.heroEyebrow);
+  setTxt('hero-line-1', t.heroLine1);
+  setTxt('hero-line-2', t.heroLine2);
+  setTxt('hero-line-3', t.heroLine3);
+  setTxt('hero-desc', t.heroDesc);
+  setTxt('about-title', t.aboutTitle);
+  setTxt('about-subtitle', t.aboutSubtitle);
+  setTxt('about-text', t.aboutText);
+  setTxt('vision-title', t.visionTitle);
+  setTxt('vision-text', t.visionText);
+  setTxt('mission-title', t.missionTitle);
+  setTxt('mission-text', t.missionText);
+  showToast('🌐 Language changed successfully');
+}
+
+/* ============================================================
+   GSAP ANIMATIONS (called after loader)
+   ============================================================ */
+function initAnimations() {
+  // Counter
+  animateCounters();
+
+  // Hero entrance
+  gsap.from('.hero-eyebrow', { y: 30, opacity: 0, duration: 0.7, delay: 0.2 });
+  gsap.from('.hero-heading .line', { y: 60, opacity: 0, duration: 0.8, stagger: 0.15, delay: 0.4 });
+  gsap.from('.hero-desc', { y: 30, opacity: 0, duration: 0.7, delay: 0.9 });
+  gsap.from('.hero-cta', { y: 30, opacity: 0, duration: 0.7, delay: 1.1 });
+  gsap.from('.hero-stat', { y: 30, opacity: 0, duration: 0.7, stagger: 0.15, delay: 1.3 });
+  gsap.from('.hero-card-3d', { x: 80, opacity: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
+  gsap.from('.orbit-ring', { scale: 0, opacity: 0, duration: 1.2, stagger: 0.2, delay: 1.0 });
+
+  // Scroll animations
+  gsap.utils.toArray('.service-card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 85%' },
+      y: 60, opacity: 0, duration: 0.7, delay: i * 0.08, ease: 'power3.out'
+    });
+  });
+  gsap.from('.about-grid', {
+    scrollTrigger: { trigger: '#about', start: 'top 75%' },
+    y: 50, opacity: 0, duration: 0.9
+  });
+  gsap.from('.dash-stat-card', {
+    scrollTrigger: { trigger: '#dashboard', start: 'top 70%' },
+    y: 40, opacity: 0, stagger: 0.12, duration: 0.7
+  });
+  gsap.from('.contact-info', {
+    scrollTrigger: { trigger: '#contact', start: 'top 75%' },
+    x: -50, opacity: 0, duration: 0.8
+  });
+  gsap.from('.contact-form', {
+    scrollTrigger: { trigger: '#contact', start: 'top 75%' },
+    x: 50, opacity: 0, duration: 0.8
+  });
+
+  // Progress bars animate on scroll
+  ScrollTrigger.create({
+    trigger: '#dashboard', start: 'top 70%',
+    onEnter: () => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+          bar.style.transition = 'width 1.2s cubic-bezier(0.4,0,0.2,1)';
+          bar.style.width = w;
+        }, 100);
+      });
+    }
+  });
+}
+
+/* ============================================================
+   DASHBOARD TABS
+   ============================================================ */
+document.querySelectorAll('.dash-nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.dash-nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
